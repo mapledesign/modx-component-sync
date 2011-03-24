@@ -41,7 +41,7 @@ That really is all there is to it!
 
 ## Colophon
 
-SyncX was developed by Maple Design Ltd. We build custom MODX applications and add-ons for global clients. [Contact us](http://www.mapledesign.co.uk/services/s/content-management-systems/modx-development/)! (end of shameless plug!).
+SyncX was developed by Peter Bowyer and the team at Maple Design Ltd. We build custom MODX applications and add-ons like this [easy to manage photo gallery](http://www.youtube.com/watch?v=SUbM_D2GT4s) to make your clients' lives easier. [Contact us](http://www.mapledesign.co.uk/services/s/content-management-systems/modx-development/) to find out how we can help!
 
 This code should be considered alpha-quality. We are using it but have not extensively tested it.
 
