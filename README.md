@@ -4,6 +4,12 @@ This module for MODX Evolution (tested with 1.0.5) allows components stored in t
 
 WARNING: Currently MODX has no way to determine when a component in the database was modified. This script is very naive, and will overwrite all items in the database/on the file system, instead of checking modification dates. That is planned for a future release.
 
+## To install
+
+Assuming you are logged into a terminal and already in your MODX site's root directory, the following commands are all you need to use:
+
+    $ cd assets/modules
+    $ git clone git://github.com/pbowyer/modx-component-sync.git component-sync
 
 ## To use
 
