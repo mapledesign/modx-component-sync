@@ -9,10 +9,12 @@ WARNING: Currently MODX has no way to determine when a component in the database
 
 You can either run the module from the command line as follows:
 
-  $ cd assets/modules/component-sync/
-  $ php cmd.php dump
+    $ cd assets/modules/component-sync/
+    $ php cmd.php dump
+
 or
-  $ php cmd.php load
+
+    $ php cmd.php load
   
 or you can install the web-based module. 
 
@@ -20,6 +22,6 @@ To do this, go to Modules -> Manage modules.
 Click on the 'New Module' button
 Give the module a name (e.g. 'Component Sync') and paste the following code in as the module code:
 
-  include $modx->config['base_path'].'assets/modules/component-sync/module.php';
+    include $modx->config['base_path'].'assets/modules/component-sync/module.php';
   
 That really is all there is to it!
