@@ -5,8 +5,11 @@ class ComponentDump extends ComponentBase
 {
 	public function run()
 	{
-		$this->orig_items = array_map('basename', glob($this->dir .'*.php'));
-		
+	
+	    $fileslist = glob($this->dir .'*.php'); 	
+		if(is_array($fileslist)) {
+			$this->orig_items = array_map('basename', $fileslist);
+		}
 		$res = $this->modx->db->query("SELECT * FROM $this->table");
 		
 		while ($row = mysql_fetch_assoc($res)) {
@@ -35,9 +38,9 @@ class ComponentDump extends ComponentBase
 			$o .= "\t$i\n";
 		}
 		$o .= "\n";
-		
-		$items_in_filesystem_not_db = array_diff($this->orig_items, $this->fs_items);
-		
+		if (is_array($this->orig_items)){
+			$items_in_filesystem_not_db = array_diff($this->orig_items, $this->fs_items);
+		}
 		if (count($items_in_filesystem_not_db) > 0) {
 			$o .= $this->statsBlock("The following are in the filesystem but NOT the database", $items_in_filesystem_not_db);
 		}

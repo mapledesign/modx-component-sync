@@ -34,11 +34,13 @@ class ComponentBase
 		$this->table = $this->modx->getFullTableName($this->component[$type]['tablename']);
 		
 		$this->dir = MODX_BASE_PATH ."assets/$type/$foldername/";
-		$ret = mkdir($this->dir, 0777, true);
 		
-		if ($ret == false && !is_dir($this->dir)) {
-		  throw new Exception("Cannot create {$this->dir}. Please create directory manually, and set permissions to 0777");
-		}
+		if (!file_exists($this->dir) && !is_dir($this->dir)) {
+        	$ret = mkdir($this->dir, 0777, true);
+			if ($ret == false && !is_dir($this->dir)) {
+		  		throw new Exception("Cannot create {$this->dir}. Please create directory manually, and set permissions to 0777");
+			}  
+		} 
 	}
 	
 	protected function statsBlock($label, $array)

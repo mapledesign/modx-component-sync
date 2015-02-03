@@ -1,4 +1,12 @@
 
+<?php
+$_lang = array(); 
+include(MODX_BASE_PATH . 'assets/modules/component-sync/lang/english.php');
+if (file_exists(MODX_BASE_PATH . 'assets/modules/component-sync/lang/' . $modx->config['manager_language'] . '.php')) {
+    include(MODX_BASE_PATH . 'assets/modules/component-sync/lang/' . $modx->config['manager_language'] . '.php');
+}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html> 
     <head> 
@@ -13,34 +21,33 @@
   		objContent.innerHTML = locationOptions[ obj[obj.selectedIndex].value ];
   	}
     </script>
-        <h1>Component Sync</h1> 
+        <h1><?php echo $_lang['modulename'] ?></h1> 
         <div id="actions"> 
             <ul class="actionButtons"> 
-                <li id="Button1"><a href="#" onclick="document.location.href='index.php?a=106';"><img src="media/style/MODxCarbon/images/icons/stop.png" /> Close Component Sync</a></li> 
+                <li id="Button1"><a href="#" onclick="document.location.href='index.php?a=106';"><img src="media/style/MODxCarbon/images/icons/stop.png" /><?php echo $_lang['close_button'] ?></a></li> 
             </ul> 
         </div>        
-	    <div class="sectionHeader">Select an action</div> 
+	    <div class="sectionHeader"><?php echo $_lang['action'] ?></div> 
 	    <div class="sectionBody"> 
 	   
 <form method="post" action="">
 
-<p>I'd like to copy snippets, chunks, templates, plugins</p>
+<p><?php echo $_lang['title'] ?></p>
 <p><select name="action" onchange="updateContent(this)">
-	<option value="dump">From the Database TO the file system</option>
-	<option value="load">From the File System TO the Database</option>
+	<option value="dump"><?php echo $_lang['dump'] ?></option>
+	<option value="load"><?php echo $_lang['load'] ?></option>
 </select></p>
 
-<p><input type="checkbox" name="agree" value="1"/> I understand that all changes I've made in the <span id="change-location">file system</span> <strong>will be overwritten</strong>, and it is my responsibility to back them up (e.g. using version control)</p>
-
+<p><input type="checkbox" name="agree" value="1"/> <?php echo $_lang['agree'] ?>
 <input type="submit" />
 </form>
 	    </div> 
 	</div> 
 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST'):?>
 	<div id="interaction"> 
-    <div class="sectionHeader">Results</div> 
+    <div class="sectionHeader"><?php echo $_lang['results'] ?></div> 
     <div class="sectionBody"> 
-<?php if ($_POST['agree'] != 1): ?>You must tick the box!
+<?php if ($_POST['agree'] != 1): ?><?php echo $_lang['checkagree'] ?>
 <?php else: 
 $tt = array('snippets', 'chunks', 'plugins', 'templates');
 
