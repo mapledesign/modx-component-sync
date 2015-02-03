@@ -14,18 +14,18 @@ Currently MODX has no way to determine when a component in the database was modi
 Assuming you are logged into a terminal and already in your MODX site's root directory, the following commands are all you need to use:
 
     $ cd assets/modules
-    $ git clone git://github.com/pbowyer/modx-component-sync.git component-sync
+    $ git clone git://github.com/mapledesign/modx-component-sync.git component-sync
 
 ## To use
 
 You can either run the module from the command line as follows:
 
     $ cd assets/modules/component-sync/
-    $ php cmd.php dump
+    $ php ./cmd.php dump
 
 or
 
-    $ php cmd.php load
+    $ php ./cmd.php load
   
 or you can install the web-based module. 
 
