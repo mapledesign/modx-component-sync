@@ -10,7 +10,9 @@ define('MODX_API_MODE', true);
 include '../../../index.php';
 
 $tt = array('snippets', 'chunks', 'plugins', 'templates');
-
+$foldername = '_db';
+$eol = ''; // normalize line ending. empty (do not convert - leave as is), lf - to unix, cr - to mac,  crl - to windows 
+	
 if ($argv[1] == 'dump') {
   $class = 'ComponentDump';
 } else if ($argv[1] == 'load') {
@@ -23,7 +25,7 @@ require_once dirname(__FILE__)."/classes/$class.php";
 foreach($tt as $t) {
 	/* @var $c ComponentLoad */
   try {
-	$c = new $class($modx, $t);
+	$c = new $class($modx, $t, $foldername, $eol);
 	$c->run();
 	echo $c->getStats();
   } catch (Exception $e) {
