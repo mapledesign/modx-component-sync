@@ -17,7 +17,7 @@ if (file_exists(MODX_BASE_PATH . 'assets/modules/component-sync/lang/' . $modx->
     </head> 
     <body> 
     <script type="text/javascript">
-    var locationOptions = { dump: 'file system', load: 'database' };
+    var locationOptions = { dump: '<?=$_lang["in_filesystem"];?>', load: '<?=$_lang["in_database"]?>' };
     function updateContent(obj){
   		var objContent = document.getElementById('change-location');
   		objContent.innerHTML = locationOptions[ obj[obj.selectedIndex].value ];
