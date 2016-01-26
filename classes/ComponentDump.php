@@ -14,7 +14,7 @@ class ComponentDump extends ComponentBase
 		
 		while ($row = mysql_fetch_assoc($res)) {
 		  $filename = $row[$this->component[$this->type]['col_name']] .'.php';
-			file_put_contents($this->dir . $filename, $row[$this->component[$this->type]['col_content']]);
+			file_put_contents($this->dir . $filename, $this->normalizeEol($row[$this->component[$this->type]['col_content']]));
 			$fs_items[] = $filename;
 		}
 		

@@ -1,5 +1,7 @@
-
 <?php
+$foldername = isset($foldername)?$foldername:'_db';
+$eol = isset($eol)?$eol:'';
+
 $_lang = array(); 
 include(MODX_BASE_PATH . 'assets/modules/component-sync/lang/english.php');
 if (file_exists(MODX_BASE_PATH . 'assets/modules/component-sync/lang/' . $modx->config['manager_language'] . '.php')) {
@@ -63,7 +65,7 @@ require_once $modx->config['base_path']."assets/modules/component-sync/classes/$
 foreach($tt as $t) {
 	/* @var $c ComponentLoad */
   try {
-	$c = new $class($modx, $t);
+	$c = new $class($modx, $t, $foldername, $eol );
 	$c->run();
 	echo '<pre>';
 	echo $c->getStats();

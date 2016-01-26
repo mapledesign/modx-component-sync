@@ -1,7 +1,7 @@
 <?php
 class ComponentBase
 {
-	protected $modx, $table, $dir = null;
+	protected $modx, $table, $dir = null, $eol;
 	
 	protected $component = array(
 		'snippets' => array(
@@ -26,7 +26,7 @@ class ComponentBase
 		),
 	);
 	
-	public function __construct(&$modx, $type = 'snippets', $foldername = '_db')
+	public function __construct(&$modx, $type = 'snippets', $foldername = '_db', $eol='')
 	{
 		$this->modx = $modx;
 		$this->type = $type;
@@ -34,6 +34,8 @@ class ComponentBase
 		$this->table = $this->modx->getFullTableName($this->component[$type]['tablename']);
 		
 		$this->dir = MODX_BASE_PATH ."assets/$type/$foldername/";
+		
+		$this->eol = (empty($eol) or !in_array($eol,explode(",","lf,crlf,cr")))?"":$eol;
 		
 		if (!file_exists($this->dir) && !is_dir($this->dir)) {
         	$ret = mkdir($this->dir, 0777, true);
@@ -51,5 +53,23 @@ class ComponentBase
 		}
 		$o .= "\n";
 		return $o;
+	}
+	protected function normalizeEol($string) {
+		if ($this->eol) {
+			switch ($this->eol) {
+				case "lf": 
+					$string = preg_replace("/\r\n/s", "\n", $string);
+					$string = preg_replace("/\r/s", "\n", $string);
+					break;
+				case "cr": 
+					$string = preg_replace("/\r\n/s", "\r", $string);
+					$string = preg_replace("/\r/s", "\r", $string);
+					break;
+				case "crlf": 
+					$string = preg_replace("/(?<=[^\r]|^)\n/s", "\r\n", $string);
+					break;
+			}
+		}
+		return $string;
 	}
 }
