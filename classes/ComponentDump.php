@@ -12,8 +12,8 @@ class ComponentDump extends ComponentBase
 		}
 		$res = $this->modx->db->query("SELECT * FROM $this->table");
 		
-		while ($row = mysql_fetch_assoc($res)) {
-		  $filename = $row[$this->component[$this->type]['col_name']] .'.php';
+		while( $row = $this->modx->db->getRow( $res ) ) {
+			$filename = $row[$this->component[$this->type]['col_name']] .'.php';
 			file_put_contents($this->dir . $filename, $this->normalizeEol($row[$this->component[$this->type]['col_content']]));
 			$fs_items[] = $filename;
 		}
